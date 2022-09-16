@@ -1,0 +1,28 @@
+
+<div *ngIf="isLoaded">
+  <form *ngIf="!eroare" class="titlePadding" [formGroup] ="searchForm">
+    <label for="search">Search: </label>
+    <input type="text" formControlName="search" class="form-control">
+  </form>
+  <div class="titlePadding red" *ngIf="!meniu && !eroare">
+    Meniul este gol
+  </div>
+  <div class="titlePadding red" *ngIf="eroare">
+    A aparut o eroare la incarcarea meniului;
+  </div>
+  <br>
+  <div *ngFor="let cafea of meniu">
+    <div class="contentPadding">
+      <mat-card>
+        <mat-card-title>{{cafea.id}}: {{cafea.denumire}}</mat-card-title>
+        <mat-card-content>
+          <h4>{{cafea.descriere}}</h4>
+        </mat-card-content>
+        <h4>Price: {{cafea.pret}}</h4>
+        </mat-card>
+    </div>
+  </div>
+</div>
+<div class="titlePadding" *ngIf="!isLoaded">
+  Loading...
+</div>

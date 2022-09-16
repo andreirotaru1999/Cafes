@@ -1,0 +1,23 @@
+
+<div *ngFor="let localitate of localitati">
+  <ng-container *ngIf= "localitate.fel === 'L'" >
+    <ng-container>
+      <p  mat-raised-button color="primary" (click)="arataCopii(localitate)"> {{localitate.arataCopii ? '&#9660;' : '&#9654;' }} {{localitate.denumire}}</p>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf= "localitate.fel === 'C'" >
+    <div *ngIf="localitate.id !== idCafeneaSelectata">
+      <p (click)="selectCafe(localitate.id)">{{localitate.denumire}}</p>
+    </div>
+    <div *ngIf="localitate.id === idCafeneaSelectata">
+      <p class="selected">{{localitate.denumire}}</p>
+    </div>
+  </ng-container>
+    <ul *ngIf="localitate.copii && localitate.copii.length > 0 && localitate?.arataCopii === true">
+      <app-lista-localitati [localitati]="localitate.copii!" [selectedCafe]="idCafeneaSelectata" (selectCafeEmitter)="selectCafe($event)"></app-lista-localitati>
+      <!-- <ng-container *ngTemplateOutlet="location; context:{ $implicit: localitate.copii }" ></ng-container> -->
+    </ul>
+</div>
+
+
+

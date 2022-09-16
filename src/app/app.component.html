@@ -1,0 +1,18 @@
+<div class="container" >
+  <h1>Cafes</h1>
+
+  <div id="divMasterDetailWrapper">
+    <div id="divMasterView">
+      <app-lista-localitati [localitati]="localitati" [selectedCafe]="idCafeneaSelectata" (selectCafeEmitter)="selectCafe($event)"></app-lista-localitati>
+    </div>
+    <div id="divDetailView">
+      <div *ngIf="idCafeneaSelectata">
+        <app-meniu [id]="idCafeneaSelectata">
+        </app-meniu>
+      </div>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+
+</div>
